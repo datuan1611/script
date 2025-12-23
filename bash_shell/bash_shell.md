@@ -8,6 +8,7 @@
 - [Nhập / xuất dữ liệu](#2-nhập--xuất-dữ-liệu)
 - [Thực hiện phép tính trong shell](#3-thực-hiện-phép-tính-trong-shell)
 - [Truyền tham số lệnh trong Bash Shell](#4-truyền-tham-số-lệnh-trong-bash-shell)
+- [Câu lệnh điều kiện và các phép so sánh](#5-câu-lệnh-điều-kiện-và-các-phép-so-sánh)
 
 
 ## 1. Giới thiệu
@@ -172,7 +173,7 @@ echo "2nd param of script: $2"				#20
 #Display 3rd param of script
 echo "3rd param of script: $3"				#30
 
-#Display all params of script
+#Display all param of script
 echo "all param of script: $@"				#10 20 30
 
 #Calculate sum of param
@@ -180,6 +181,18 @@ echo "Sum of all param is: $(expr $1 + $2 + $3)"	#60
 
 exit 0
 ```
+
+
+## 5. Câu lệnh điều kiện và các phép so sánh
+
+**Các toán tử so sánh số học**  
+-eq : bằng nhau (equal)
+-ne : không bằng nhau (not equal)
+-lt : nhỏ hơn (less than)
+-gt : lớn hơn (greater than)
+-le : nhỏ hơn hoặc bằng (less or equal)
+-ge : lớn hơn hoặc bằng (greater or equal)
+
 
 
 ---
