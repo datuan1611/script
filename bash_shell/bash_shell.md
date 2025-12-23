@@ -7,6 +7,7 @@
 - [Giới thiệu](#1-giới-thiệu)
 - [Nhập / xuất dữ liệu](#2-nhập--xuất-dữ-liệu)
 - [Thực hiện phép tính trong shell](#3-thực-hiện-phép-tính-trong-shell)
+- [Truyền tham số lệnh trong Bash Shell](#4-truyền-tham-số-lệnh-trong-bash-shell)
 
 
 ## 1. Giới thiệu
@@ -36,12 +37,12 @@ exit 0							#exit script
 	- nháy ngược 「`」: những gì bên trong nháy ngược là thực thi lệnh
 
 **Biến trong shell**  
-biến dùng để lưu trữ dữ liệu chuỗi, số hoặc kết quả của 1 câu lệnh  
-để gán giá trị vào biến: ***var_name=var_value***  
-để sử dụng giá trị biến: ***$var_name***  
-có 2 loại biến:
-- biến hệ thống: được viết hoa các ký tự
-- biến người dùng đặt
+- biến shell dùng để lưu trữ dữ liệu chuỗi, số hoặc kết quả của 1 câu lệnh  
+- để gán giá trị vào biến: ***var_name=var_value***  
+	để sử dụng giá trị biến: ***$var_name***  
+- có 2 loại biến:
+	- biến hệ thống: được viết hoa các ký tự
+	- biến người dùng đặt
 
 
 ## 2. Nhập / xuất dữ liệu
@@ -149,6 +150,39 @@ S=$(echo "scale=6; $pi*$r*$r"	| bc -l)
 printf "Area (S): %.2f\n" "$S"
 ```
 
+
+## 4. Truyền tham số lệnh trong Bash Shell
+
+- tham số lệnh: là tham số được truyền khi thực hiện script
+- \$1, \$2, \$3... là tham số thứ 1, thứ 2, thứ 3... trên dòng lệnh (từ trái → phải)
+- \$@ hoặc \$*: danh sách tất cả các tham số trên dòng lệnh
+
+***Ví dụ:***
+>./04_param_cmd.sh 10 20 30
+
+```bash
+#!/bin/bash
+
+#Display 1st param of script
+echo "1st param of script: $1"				#10
+
+#Display 2nd param of script
+echo "2nd param of script: $2"				#20
+
+#Display 3rd param of script
+echo "3rd param of script: $3"				#30
+
+#Display all params of script
+echo "all param of script: $@"				#10 20 30
+
+#Calculate sum of param
+echo "Sum of all param is: $(expr $1 + $2 + $3)"	#60
+
+exit 0
+```
+
+
+---
 
 ```text
 ① ② ③ ④ ⑤ ⑥ ⑦ ⑧ ⑨ ⑩
