@@ -123,9 +123,9 @@ let "z=$m*$n"
 let result=$a+$b
 ```
 
-**Sử dụng $((...))**
+**Sử dụng $((...))**  
 \$((...)) là cú pháp trong bash shell để thực hiện các phép tính số học
-> \$([expression]) OR $(([expression]))
+> \$([expression]) OR \$(([expression]))
 ```bash
 z=$(($z+3))
 z=$(($m*$n))
@@ -186,13 +186,12 @@ exit 0
 ## 5. Câu lệnh điều kiện và các phép so sánh
 
 **Các toán tử so sánh số học**  
--eq : bằng nhau (equal)
--ne : không bằng nhau (not equal)
--lt : nhỏ hơn (less than)
--gt : lớn hơn (greater than)
--le : nhỏ hơn hoặc bằng (less or equal)
--ge : lớn hơn hoặc bằng (greater or equal)
-
+> -eq : bằng nhau (equal)
+> -ne : không bằng nhau (not equal)
+> -lt : nhỏ hơn (less than)
+> -gt : lớn hơn (greater than)
+> -le : nhỏ hơn hoặc bằng (less or equal)
+> -ge : lớn hơn hoặc bằng (greater or equal)
 
 
 ---
