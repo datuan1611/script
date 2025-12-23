@@ -1,4 +1,4 @@
-**Lập trình SHELL trong Linux**
+# Lập trình SHELL trong Linux
 
 > Author: TITV youtube  
 > URL: [Tự học Linux cơ bản](https://www.youtube.com/playlist?list=PLyxSzL3F74878husgCe4IF6iJNSCjYTGq)
@@ -9,7 +9,7 @@
 - [Thực hiện phép tính trong shell](#3-thực-hiện-phép-tính-trong-shell)
 
 
-# 1. Giới thiệu
+## 1. Giới thiệu
 
 **Các loại shell**
 - sh (Shell Bourne): shell nguyên thủy trên Unix/Linux
@@ -35,18 +35,18 @@ exit 0							#exit script
 	- nháy đơn 「'」: những gì bên trong nháy đơn có ý nghĩa không đổi
 	- nháy ngược 「`」: những gì bên trong nháy ngược là thực thi lệnh
 
-**Biến trong shell**
-biến: dùng để lưu trữ dữ liệu chuỗi, số hoặc kết quả của 1 câu lệnh  
-để gán giá trịvào biến: ***var_name=var_value***  
+**Biến trong shell**  
+biến dùng để lưu trữ dữ liệu chuỗi, số hoặc kết quả của 1 câu lệnh  
+để gán giá trị vào biến: ***var_name=var_value***  
 để sử dụng giá trị biến: ***$var_name***  
-có 2 loại:
+có 2 loại biến:
 - biến hệ thống: được viết hoa các ký tự
 - biến người dùng đặt
 
 
-# 2. Nhập / xuất dữ liệu
+## 2. Nhập / xuất dữ liệu
 
-## Lệnh ECHO
+**Lệnh ECHO**
 1. In chuỗi đơn giản trong dấu 「""」
 ```bash
 echo "Hello, world!"
@@ -65,7 +65,7 @@ echo "Alice said \"Hello\""
 echo "Today is $(date)"
 ```
 
-## Lệnh READ
+**Lệnh READ**  
 được dùng để đọc dữ liệu từ bàn phím và lưu vào các biến
 > read [options] [variable...]
 
@@ -91,16 +91,16 @@ read -r line
 ```bash
 read -a names
 ```
-***※Lưu ý:***
-có thể sử dụng nhiều options cùng lúc<br>
+***※Lưu ý:***  
+có thể sử dụng nhiều options cùng lúc
 ```bash
 read -rsp "Input your password:" password
 ```
 
 
-# 3. Thực hiện phép tính trong shell
+## 3. Thực hiện phép tính trong shell
 
-## Sử dụng EXPR
+**Sử dụng EXPR**  
 expr là tiện ích dòng lệnh, được dùng để thực hiện các phép toán số học và các phép toán chuỗi  
 yêu cầu các toán hạng và toán tử ngăn cách bởi dấu cách
 > expr [expression]
@@ -111,7 +111,7 @@ echo `expr 4 \* 2`
 result=$(expr $a + $b)
 ```
 
-## Sử dụng LET
+**Sử dụng LET**  
 let là 1 lệnh dành riêng cho shell script để thực hiện các phép tính số học
 > let var = [expression]
 ```bash
@@ -121,16 +121,16 @@ let "z=$m*$n"
 let result=$a+$b
 ```
 
-## Sử dụng $((...))
+**Sử dụng $((...))**
 \$((...)) là cú pháp trong bash shell để thực hiện các phép tính số học
 > \$([expression]) OR $(([expression]))
 ```bash
-z=$((z+3))
+z=$(($z+3))
 z=$(($m*$n))
 result=$(($a+$b))
 ```
 
-***Lưu ý:***
+***Lưu ý:***  
 để tính toán số thực trong bash shell, cần sử dụng math libriry 「bc -l」  
 URL: https://www.gnu.org/software/bc/manual/html_mono/bc.html
 ```bash
@@ -150,8 +150,9 @@ printf "Area (S): %.2f\n" "$S"
 ```
 
 
-```
-①	②	③	④	⑤	⑥	⑦	⑧	⑨	⑩
-１、	２、	３、	４、	５、	６、	７、	８、	９、	１０、
-　 〇 ■ □ △ ▲ ▽ ▼ ◆ ☆ ★ 	・ • ● ＊ ※ （） 「」 『』 【】 ＜＞ ～？ ├ └ │ ┗ ⇒ → ← ↑ ↓ ➡	／ 〇 ＋ － ✕ ： ＝ × ÷ ±  ＄ ✓
+```text
+① ② ③ ④ ⑤ ⑥ ⑦ ⑧ ⑨ ⑩
+１、 ２、 ３、 ４、 ５、 ６、 ７、 ８、 ９、 １０、
+　〇 ■ □ △ ▲ ▽ ▼ ◆ ☆ ★ ・ • ● ＊ ※ （） 「」 『』 【】 ＜＞ ～ ？
+　├ └ │ ┗ ⇒ → ← ↑ ↓ ➡ ／ ＋ － ✕ ： ＝ × ÷ ±  ＄ ✓
 ```
