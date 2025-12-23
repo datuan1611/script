@@ -186,12 +186,12 @@ exit 0
 ## 5. Câu lệnh điều kiện và các phép so sánh
 
 **Các toán tử so sánh số học**  
-> -eq : bằng nhau (equal)
-> -ne : không bằng nhau (not equal)
-> -lt : nhỏ hơn (less than)
-> -gt : lớn hơn (greater than)
-> -le : nhỏ hơn hoặc bằng (less or equal)
-> -ge : lớn hơn hoặc bằng (greater or equal)
+> -eq : bằng nhau (equal)  
+> -ne : không bằng nhau (not equal)  
+> -lt : nhỏ hơn (less than)  
+> -gt : lớn hơn (greater than)  
+> -le : nhỏ hơn hoặc bằng (less or equal)  
+> -ge : lớn hơn hoặc bằng (greater or equal)  
 
 
 ---
