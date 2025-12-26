@@ -9,7 +9,12 @@
 - [Thực hiện phép tính trong shell](#3-thực-hiện-phép-tính-trong-shell)
 - [Truyền tham số lệnh trong Bash Shell](#4-truyền-tham-số-lệnh-trong-bash-shell)
 - [Câu lệnh điều kiện và các phép so sánh](#5-câu-lệnh-điều-kiện-và-các-phép-so-sánh)
+- [Vòng lặp trong shell](#6-vòng-lặp-trong-shell)
+- [Mảng dữ liệu](#7-mảng-dữ-liệu)
+- [Function trong shell](#8-function-trong-shell)
+- [Đọc ghi file và sắp xếp mảng](#9-đọc-ghi-và-sắp-xếp-mảng)
 
+Đọc ghi file và sắp xếp mảng
 
 ## 1. Giới thiệu
 
@@ -159,11 +164,14 @@ printf "Area (S): %.2f\n" "$S"
 - \$@ hoặc \$*: danh sách tất cả các tham số trên dòng lệnh
 
 ***Ví dụ:***
->./04_param_cmd.sh 10 20 30
-
+>./04_param_string.sh "Anh Tuan Do"
 ```bash
-#!/bin/bash
+#Output param string by ECHO
+echo "Hello, $1!"				#Hello, Anh Tuan Do!
+```
 
+>./04_param_sum.sh 10 20 30
+```bash
 #Display 1st param of script
 echo "1st param of script: $1"				#10
 
@@ -178,8 +186,6 @@ echo "all param of script: $@"				#10 20 30
 
 #Calculate sum of param
 echo "Sum of all param is: $(expr $1 + $2 + $3)"	#60
-
-exit 0
 ```
 
 
@@ -192,6 +198,148 @@ exit 0
 > -gt : lớn hơn (greater than)  
 > -le : nhỏ hơn hoặc bằng (less or equal)  
 > -ge : lớn hơn hoặc bằng (greater or equal)  
+
+**Sử dụng điều kiện IF**  
+```bash
+read -p "Input your age: " age
+
+if [ $age -gt 18 ]; then
+	echo "You are an adult."
+elif [ $age -lt 13 ]; then
+	echo "You are a child."
+else
+	echo "You are a teenager."
+fi
+```
+
+## 6. Vòng lặp trong shell
+
+**Vòng lặp WHILE**  
+```bash
+counter=1
+
+while [ $counter -lt 5 ]; do
+	echo "Loop WHILE: counter[$counter]"
+	#counter=$(expr "$counter + 1")
+	counter=$(($counter+1))
+done
+```
+**Vòng lặp FOR**  
+```bash
+for index in {1..5}; do
+	echo "Loop FOR: index[$index]"
+done
+```
+
+>sử dụng FOR để duyệt các tham số lệnh 「\$@」  
+>./06_loop_for_param.sh Alice John Tommy  
+```bash
+for param in "$@"; do
+	echo "Loop FOR: param[$param]"
+done
+```
+
+**Lệnh BREAK**  
+```bash
+counter=1
+
+while [ $counter -lt 5 ]; do
+	echo "Loop WHILE: counter[$counter]"
+	if [ $counter -eq 3 ]; then
+		break
+	fi
+	counter=$(($counter+1))
+done
+```
+
+
+## 7. Mảng dữ liệu
+
+> mảng: là cấu trúc dữ liệu linh hoạt, cho phép lưu trữ nhiều giá trị trong 1 biến  
+> mảng trong shell có đặc điểm:  
+> - không cần khai báo với kích thước cố định  
+> - có thể chứa các loại dữ liệu khác nhau: chuỗi, số nguyên, số thực  
+
+**Khai báo mảng**  
+```bash
+#Method 1: Define array by assigning directly
+arr_strings=("apple" "banana" "cherry")
+arr_numbers=(1 2 3 4 5)
+
+#Method 2: Define array by result of command/available
+arr_files=(*.txt)
+```
+
+**Truy cập vào phần tử của mảng**
+```bash
+#Access 1st member of array
+echo ${arr_strings[0]}		#Output: apple
+
+#Access 3rd member of array
+echo ${arr_strings[2]}		#Output: cherry
+
+#Access all members of array
+echo ${arr_strings[@]}		#Output: apple banana cherry
+
+#Count members of array
+echo ${#arr_strings[@]}		#Output: 3
+```
+
+**Xóa phần tử của mảng**
+```bash
+#Delete 2nd member of array
+unset arr_strings[1]
+
+#Delete all of array
+unset arr_strings
+```
+
+**Duyệt các phần tử của mảng**
+```bash
+#Loop through array by FOR
+for element in "${arr_strings[@]}"; do
+	echo "$element"
+done
+
+#Loop through array by WHILE
+index=0
+
+while [ $index -lt ${#arr_strings[@]} ]; do
+	echo "${arr_strings[$index]}"
+	index=$(($index+1))
+done
+```
+
+***Lưu ý***  
+>khi input 1 mảng bằng lệnh READ, thêm options 「-a」
+```bash
+read -p "Input array of numbers: " -a arr_number
+```
+
+
+## 8. Function trong shell
+
+**Function**  
+- hàm là 1 khối mã lệnh được tổ chức để thực hiện 1 tác vụ cụ thể
+- hàm được dùng để tái sử dụng mã, tắng tính tổ chức và dễ duy trì của mã
+- hàm có thể được gọi từ bất kỳ đâu trong chương trình, và thực hiện 1 loạt các lệnh được định nghĩa bên trong nó
+
+***Lưu ý***  
+>khi define 1 function, không khai bác các tham số trong 「()」  
+>để truyền tham số vào trong function, nên sử dụng các tham số lệnh đối khi call function
+
+```bash
+#Define a function
+print_message() {
+	echo "Hello, $1!"
+}
+
+#Call a function
+read -p "Input your name: " name
+print_message $name
+```
+
+## 9. Đọc ghi file và sắp xếp mảng
 
 
 ---
