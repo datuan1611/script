@@ -13,6 +13,7 @@
 - [Mảng dữ liệu](#7-mảng-dữ-liệu)
 - [Function trong shell](#8-function-trong-shell)
 - [Đọc ghi file và sắp xếp mảng](#9-đọc-ghi-file-và-sắp-xếp-mảng)
+- [Debug lập trình shell](#10-debug-lập-trình-shell)
 
 ## 1. Giới thiệu
 
@@ -378,6 +379,46 @@ done
 echo "${arr_number[@]}" > "$file_output"
 ```
 
+
+## 10. Debug lập trình shell
+
+Sử dụng 2 cờ 「x」 và 「v」 để debug lập trình shell, giúp theo dõi luồng thực thi của chương trình, và xác định nơi lỗi xảy ra
+- set -x:  
+	- hiển thị các dòng lệnh được mở rộng trước khi nó được thực thi
+- set -v:  
+	- hiển thị các dòng lệnh theo cách viết gốc trước khi chúng được thực thi
+	- không hiển thị các dòng lệnh được mở rộng (expanded commands)
+
+***Debug toàn bộ chương trình script***
+```bash
+#!/bin/bash -xv
+file_input=$1
+file_output=$2
+
+echo -r -a arr_number < "$file_input"
+echo "${arr_number[@]}" > "$file_output"
+
+exit 0
+```
+
+***Debug 1 phần chương trình script***
+```bash
+#!/bin/bash
+ile_input=$1
+file_output=$2
+
+#Enable debug
+set -xv
+
+#Block of command that need to debug
+echo -r -a arr_number < "$file_input"
+echo "${arr_number[@]}" > "$file_output"
+
+#Disable debug
+set +xv
+
+exit 0
+```
 
 ---
 
