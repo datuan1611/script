@@ -326,7 +326,7 @@ read -p "Input array of numbers: " -a arr_number
 - hàm có thể được gọi từ bất kỳ đâu trong chương trình, và thực hiện 1 loạt các lệnh được định nghĩa bên trong nó
 
 ***Lưu ý***  
->khi define 1 function, không khai bác các tham số trong 「()」  
+>khi define 1 function, không khai báo các tham số trong 「()」  
 >để truyền tham số vào trong function, nên sử dụng các tham số lệnh đối khi call function
 
 ```bash
@@ -384,7 +384,7 @@ echo "${arr_number[@]}" > "$file_output"
 
 Sử dụng 2 cờ 「x」 và 「v」 để debug lập trình shell, giúp theo dõi luồng thực thi của chương trình, và xác định nơi lỗi xảy ra
 - set -x:  
-	- hiển thị các dòng lệnh được mở rộng trước khi nó được thực thi
+	- hiển thị các dòng lệnh được mở rộng trước khi chúng được thực thi
 - set -v:  
 	- hiển thị các dòng lệnh theo cách viết gốc trước khi chúng được thực thi
 	- không hiển thị các dòng lệnh được mở rộng (expanded commands)
