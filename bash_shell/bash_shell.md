@@ -157,9 +157,11 @@ printf "Area (S): %.2f\n" "$S"
 
 ## 4. Truyền tham số lệnh trong Bash Shell
 
+```text
 - tham số lệnh: là tham số được truyền khi thực hiện script
-- \$1, \$2, \$3... là tham số thứ 1, thứ 2, thứ 3... trên dòng lệnh (từ trái → phải)
-- \$\@ hoặc \$\*: danh sách tất cả các tham số trên dòng lệnh
+- $1, $2, $3... là tham số thứ 1, thứ 2, thứ 3... trên dòng lệnh (từ trái → phải)
+- $@ hoặc $*: danh sách tất cả các tham số trên dòng lệnh
+```
 
 ***Ví dụ:***
 >./04_param_string.sh "Anh Tuan Do"
