@@ -12,9 +12,7 @@
 - [Vòng lặp trong shell](#6-vòng-lặp-trong-shell)
 - [Mảng dữ liệu](#7-mảng-dữ-liệu)
 - [Function trong shell](#8-function-trong-shell)
-- [Đọc ghi file và sắp xếp mảng](#9-đọc-ghi-và-sắp-xếp-mảng)
-
-Đọc ghi file và sắp xếp mảng
+- [Đọc ghi file và sắp xếp mảng](#9-đọc-ghi-file-và-sắp-xếp-mảng)
 
 ## 1. Giới thiệu
 
@@ -144,11 +142,11 @@ URL: https://www.gnu.org/software/bc/manual/html_mono/bc.html
 echo "scale=3; 3.5 + 2.25"	| bc -l		#5.7500
 echo "scale=4; 10 / 3"		| bc -l		#3.3333
 echo "scale=6; sqrt(2)"		| bc -l		#1.414213
-echo "scale=6; 5^3"		| bc -l		#125
+echo "scale=6; 5^3"			| bc -l		#125
 echo "scale=10; 4*a(1)"		| bc -l		#3.1415926535
 echo "scale=6; s(0.5)"		| bc -l		#sin(0.5 rad)
 
-export LC_NUMERIC=C				#using 「.」 for floating-point number
+export LC_NUMERIC=C						#using 「.」 for floating-point number
 
 read -p "Input radius of circle: " r
 pi=$(echo "scale=10; 4*a(1)"	| bc -l)
@@ -161,7 +159,7 @@ printf "Area (S): %.2f\n" "$S"
 
 - tham số lệnh: là tham số được truyền khi thực hiện script
 - \$1, \$2, \$3... là tham số thứ 1, thứ 2, thứ 3... trên dòng lệnh (từ trái → phải)
-- \$@ hoặc \$*: danh sách tất cả các tham số trên dòng lệnh
+- \$\@ hoặc \$\*: danh sách tất cả các tham số trên dòng lệnh
 
 ***Ví dụ:***
 >./04_param_string.sh "Anh Tuan Do"
@@ -339,7 +337,44 @@ read -p "Input your name: " name
 print_message $name
 ```
 
+
 ## 9. Đọc ghi file và sắp xếp mảng
+
+```terminal
+#echo "9 5 3 1 5 89 10" > 09_file_input.txt
+#touch 09_file_output.txt
+#./09_file_arrange_array.sh 09_file_input.txt 09_file_output.txt
+file_input: 9 5 3 1 5 89 10
+file_output: 1 3 5 5 9 10 89
+```
+
+```bash
+#Check if file_input is existing or not
+if [ ! -f "$file_input" ]; then
+	echo "File $file_input is not existing"
+	exit
+fi
+
+#Read array from file_input
+read -r -a arr_number < "$file_input"
+
+#Count member of array
+n=${#arr_number[@]}
+
+#Arrange member of array
+for ((i = 0; i < n-1; i++)); do
+	for ((j = i+1; j < n; j++)); do
+		if [ ${arr_number[$i]} -gt ${arr_number[$j]} ]; then
+			tmp=${arr_number[$i]}
+			arr_number[$i]=${arr_number[$j]}
+			arr_number[$j]=$tmp
+		fi
+	done
+done
+
+#Write result into file_output
+echo "${arr_number[@]}" > "$file_output"
+```
 
 
 ---

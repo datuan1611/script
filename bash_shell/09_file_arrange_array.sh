@@ -12,6 +12,7 @@ fi
 
 #Read array from file_input
 read -r -a arr_number < "$file_input"
+echo "file_input: ${arr_number[@]}"
 
 #Count member of array
 n=${#arr_number[@]}
@@ -29,3 +30,6 @@ done
 
 #Write result into file_output
 echo "${arr_number[@]}" > "$file_output"
+echo "file_output: ${arr_number[@]}"
+
+exit 0
